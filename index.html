@@ -1,0 +1,101 @@
+<head>
+	<title>Twenty Levels. No Upgrades.</title>
+	<script src="levels.js"></script>
+	<script src="magic.js"></script>
+	<style>
+	.cool{
+		border-color: purple;
+		color: purple;
+		font-family: Impact;
+		font-size: 20px;
+		border-radius: 10px;
+		background-color: mediumpurple;
+	}
+	.stamp {
+		width: 128px;
+		height: 128px;
+	}
+	.closecool{
+		border-color: goldenRod;
+		color: goldenRod;
+		font-family: Impact;
+		font-size: 20px;
+		border-radius: 10px;
+		background-color: gold;
+	}
+	.cooltext{
+		color: mediumpurple;
+		text-shadow: 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 24px purple;
+		font-family: Impact;
+		font-size: 42px;
+	}
+	.uncooltext{
+		font-family: Impact;
+		font-size: 42px;
+	}
+	</style>
+</head>
+<body>
+	<div style="text-align:center">will this work...?</div>
+	<div id="score" style="text-align:center"></div>
+	<br><br>
+	<div style="text-align:center">
+		<span class="cooltext">20 OUT OF 20 LEVELS VERIFIED</span><br><br>
+		<button onclick="stampSelect(0)" id="stamp0" class="stamp">BLANK<br>STAMP</button>
+		<button onclick="stampSelect(1)" id="stamp1" class="stamp">LAPPING<br>STAMP</button>
+		<button onclick="stampSelect(2)" id="stamp2" class="stamp">CRITICAL<br>STAMP</button>
+		<button onclick="stampSelect(3)" id="stamp3" class="stamp">BADGE<br>STAMP</button><br>
+		Floor 1<br>
+		<button class="cool" onclick="simulateLevel('entrance',false)">John Gutter<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('medieval',false)">Pizzascape<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('ruin',false)">Ancient Cheese<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('dungeon',false)">Bloodsauce Dungeon<br>[VERIFIED]</button>
+		<br>Floor 2<br>
+		<button class="cool" onclick="simulateLevel('graveyard',false)">Wasteyard<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('farm',false)">Fun Farm<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('saloon',false)">Fastfood Saloon<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('badland',false)">Oregano Desert<br>[VERIFIED]</button>
+		<br>Floor 3<br>
+		<button class="cool" onclick="simulateLevel('plage',false)">Crust Cove<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('forest',false)">Gnome Forest<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('space',false)">Deep-Dish 9<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('minigolf',false)">GOLF<br>[VERIFIED]</button>
+		<br>Floor 4<br>
+		<button class="cool" onclick="simulateLevel('street',false)">The Pig City<br>[VERIFIED]</button>
+		<button class="cool"  onclick="simulateLevel('factory',false)">Peppibot Factory<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('sewer',false)">Oh Shit!<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('freezer',false)">Refrigerator-Refrigerador-Freezerator<br>[VERIFIED]</button>
+		<br>Floor 5<br>
+		<button class="cool" onclick="simulateLevel('chateau',false)">Pizzascare<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('kidsparty',false)">Don't Make A Sound<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('mansion',false)">Meat Lover's Mansion<br>[VERIFIED]</button>
+		<button class="cool" onclick="simulateLevel('kidsparty',false)">WAR<br>[VERIFIED]</button>
+		<br><h2>DEBUGGER</h2>
+		<br>internal level name
+		<input
+		type="text"
+		id="levelDebug"
+		name="name"
+		size="45"/>
+		<br>order
+		<input
+		type="text"
+		id="orderDebug"
+		name="name"
+		size="45"/>
+		<br>lap order
+		<input
+		type="text"
+		id="lapOrderDebug"
+		name="name"
+		size="45"/>
+		<br>lap extra order
+		<input
+		type="text"
+		id="lapExtraOrderDebug"
+		name="name"
+		size="45"/>
+		<br>
+		<button onclick="debugLevel()">Debug this level for me,please.</button>
+	</div>
+</body>
