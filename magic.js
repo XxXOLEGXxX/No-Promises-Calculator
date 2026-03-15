@@ -3,6 +3,7 @@ let passiveMult = 1
 let critHit = 0.05
 let critDamage = 2
 let combo = 0
+let custom = [1,0.05,2,5]
 let geromeUpgrade = false
 let gerome = false
 let laps = 1
@@ -16,7 +17,7 @@ function willICrit(){
 	return critHit>Math.random()
 }
 
-function stampSelect(x){
+function stampSelect(x,pick=true){
 	stamp=x
 	switch(x){
 		case 0:
@@ -43,11 +44,24 @@ function stampSelect(x){
 			critDamage=2
 			money=5
 			break;
+		case 4:
+			if(pick){
+				custom[0]=Number(prompt("Choose Lap Amount"))
+				custom[1]=Math.max(Math.min(Number(prompt("Choose Critical Hit... preferably within 0 to 100 range"))/100,1),0)
+				custom[2]=Number(prompt("Choose Critical Damage"))
+				custom[3]=Number(prompt("Choose Money Amount"))
+			}
+			laps=custom[0]
+			critHit=custom[1]
+			critDamage=custom[2]
+			money=custom[3]
+			break;
 		default:
 			console.log("you suck")
 			break;
 	}
-	for(let i=0;i<4;i++){
+
+	for(let i=0;i<5;i++){
 		if(document.getElementById("stamp"+i).id.includes(x))
 			document.getElementById("stamp"+i).style["background-color"]="lightgreen"
 		else
@@ -69,7 +83,7 @@ function simulateLevel(level, debugIt){
 	let mult = 1
 	let devilPizza = false
 	let runMoney = money
-	stampSelect(stamp)
+	stampSelect(stamp,false)
 	combo = 0
 	gerome = false
 	shotgun = false
@@ -230,6 +244,8 @@ function simulateLevel(level, debugIt){
 	}
 	if(level!="war"){
 		mult=mult+(debugIt?debug[2]>0?(enemy*passiveMult*(willICrit()?critDamage:1)):0:(enemy*passiveMult*(willICrit()?critDamage:1)))
+		critRigger[0]=critRigger[0]+(debugIt?debug[2]>0?(enemy*passiveMult):0:(enemy*passiveMult))
+		critRigger[1]=critRigger[1]+(debugIt?debug[2]>0?(enemy*passiveMult*critDamage):0:(enemy*passiveMult*critDamage))
 		combo=combo+(debugIt?debug[2]>0?1:0:1)
 	}
 	lengthyLength = Math.min(tempLevels[level].lapOrder.length,debugIt?debug[2]:999)
@@ -511,5 +527,6 @@ function simulateLevel(level, debugIt){
 		}
 		laps=laps-1
 	}
+	console.log(critRigger)
 	document.getElementById("score").innerHTML = `Chips: ${chips} Mult: ${mult} Combo: ${combo} Money: $${money}<br><h1>SCORE:<br><span style="font-size: 24px; color: hsl(0 50% 25%)">${chips*critRigger[0]}</span>-<span style="font-size: 28px; color: hsl(25 62.5% 31.25%)">${(chips+taunt)*critRigger[0]}</span>---<span style="color: hsl(${(chips*mult-(chips*critRigger[0]))/((chips+taunt)*critRigger[1]-(chips*critRigger[0]))*270} ${(chips*mult-(chips*critRigger[0]))/((chips+taunt)*critRigger[1]-(chips*critRigger[0]))*50+50}% ${(chips*mult-(chips*critRigger[0]))/((chips+taunt)*critRigger[1]-(chips*critRigger[0]))*25+25}%)">${chips*mult}</span>---<span style="font-size: 28px; color: hsl(240 87.5% 43.75%)">${chips*critRigger[1]}</span>-<span style="font-size: 24px; color: hsl(270 100% 50%)">${(chips+taunt)*critRigger[1]}</span><br><h1>TOTAL STRENGTH: ${chips*mult/scoreRequirement}</h1><br>you need 43.75 strength to beat final level`
 }
