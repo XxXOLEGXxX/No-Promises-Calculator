@@ -54,25 +54,6 @@ function willICrit(){
 	return Number(critHit)>Math.random()
 }
 
-window.addEventListener("resize", positionChange);
-
-window.addEventListener("mouseover", function(event) {
-	let magicBullshit = upgrades[availableUpgrades[event.target.id.slice(event.target.id.length-1)]]
-	let magicBullshit2 = upgradesOwnedStats[Object.keys(upgradesOwnedStats)[event.target.id.slice(event.target.id.length-1)]]
-	if(event.target.id.includes("reroll")) document.getElementById("shopDescPart").innerHTML = `<h2>REROLL<br>[$${rerollCost}]</h2>`
-	if(event.target.id.includes("upgrade") && !event.target.id.includes("upgradeOwned")) document.getElementById("shopDescPart").innerHTML = `${magicBullshit.name}<br><br>${magicBullshit.rarity}<br>${magicBullshit.maxTier==1?"Untiered":"Tier "+ Number(magicBullshit.tier+1)}<br>Costs $${magicBullshit.cost}<br>Uses ${magicBullshit.points} Points`
-	if(event.target.id.includes("upgradeOwned")) document.getElementById("shopDescPart").innerHTML = `${magicBullshit2.name}<br><br>${magicBullshit2.rarity}<br>${magicBullshit2.maxTier==1?"Untiered":"Tier "+ magicBullshit2.tier}<br>Costs $${magicBullshit2.cost}<br>Uses ${magicBullshit2.points} Points`
-});
-
-window.addEventListener("mouseout", function(event) {
-  if(event.target.id.includes("upgrade")||event.target.id.includes("reroll")) document.getElementById("shopDescPart").innerHTML = ``
-});
-
-function positionChange(){
-	document.getElementById("shop").style.left = (window.innerWidth-document.getElementById("shop").style.width.slice(0,-2))/2+"px"
-	document.getElementById("shop").style.top = (window.innerHeight-document.getElementById("shop").style.height.slice(0,-2))/2+"px"
-}
-
 function stampSelect(x,pick){
 	stamp=x
 	switch(x){
@@ -1098,3 +1079,24 @@ function hasAnyKey(obj1, obj2) {
 }
 
 let update = setInterval(updateNumbers, 1000/60)
+
+window.addEventListener("resize", positionChange);
+
+window.addEventListener("mouseover", function(event) {
+	let magicBullshit = upgrades[availableUpgrades[event.target.id.slice(event.target.id.length-1)]]
+	let magicBullshit2 = upgradesOwnedStats[Object.keys(upgradesOwnedStats)[event.target.id.slice(event.target.id.length-1)]]
+	if(event.target.id.includes("reroll")) document.getElementById("shopDescPart").innerHTML = `<h2>REROLL<br>[$${rerollCost}]</h2>`
+	if(event.target.id.includes("upgrade") && !event.target.id.includes("upgradeOwned")) document.getElementById("shopDescPart").innerHTML = `${magicBullshit.name}<br><br>${magicBullshit.rarity}<br>${magicBullshit.maxTier==1?"Untiered":"Tier "+ Number(magicBullshit.tier+1)}<br>Costs $${magicBullshit.cost}<br>Uses ${magicBullshit.points} Points`
+	if(event.target.id.includes("upgradeOwned")) document.getElementById("shopDescPart").innerHTML = `${magicBullshit2.name}<br><br>${magicBullshit2.rarity}<br>${magicBullshit2.maxTier==1?"Untiered":"Tier "+ magicBullshit2.tier}<br>Costs $${magicBullshit2.cost}<br>Uses ${magicBullshit2.points} Points`
+});
+
+window.addEventListener("mouseout", function(event) {
+  if(event.target.id.includes("upgrade")||event.target.id.includes("reroll")) document.getElementById("shopDescPart").innerHTML = ``
+});
+
+function positionChange(){
+	if(document.getElementById("shop")){
+		document.getElementById("shop").style.left = (window.innerWidth-document.getElementById("shop").style.width.slice(0,-2))/2+"px"
+		document.getElementById("shop").style.top = (window.innerHeight-document.getElementById("shop").style.height.slice(0,-2))/2+"px"
+	}
+}
