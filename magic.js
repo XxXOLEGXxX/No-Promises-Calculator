@@ -73,7 +73,12 @@ function positionChange(){
 	document.getElementById("shop").style.top = (window.innerHeight-document.getElementById("shop").style.height.slice(0,-2))/2+"px"
 }
 
-positionChange()
+function initialize(){
+	while(!window.positionChange){
+		return;
+	}
+	positionChange()
+}
 
 function stampSelect(x,pick){
 	stamp=x
