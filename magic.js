@@ -1095,7 +1095,7 @@ window.addEventListener("mouseout", function(event) {
 });
 
 function positionChange(){
-	if(document.getElementById("shop")){
+	if(!!document.getElementById("shop")){
 		document.getElementById("shop").style.left = (window.innerWidth-document.getElementById("shop").style.width.slice(0,-2))/2+"px"
 		document.getElementById("shop").style.top = (window.innerHeight-document.getElementById("shop").style.height.slice(0,-2))/2+"px"
 	}
