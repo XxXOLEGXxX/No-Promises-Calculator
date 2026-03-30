@@ -940,7 +940,7 @@ function updateNumbers(){
 		let rarity=(Math.random()*100>=99.99?"Mythical":Math.random()*100>=95?"Rare":Math.random()*100>=70?"Uncommon":"Common")
 		while(availableUpgrades.length<(upgradeLimit-boughtUpgrades)){
 			check=true
-			randomizer=Math.floor(Math.random()*32)
+			randomizer=Math.floor(Math.random()*33)
 			for(let v=0;v<Object.keys(upgradesOwnedStats).length;v++){
 				if(Object.keys(upgrades)[randomizer].includes(upgradeId[upgradesOwnedStats[v].id])&&(upgradesOwnedStats[v].tier>=upgradesOwnedStats[v].maxTier))
 					check = false
@@ -949,7 +949,7 @@ function updateNumbers(){
 				availableUpgrades[availableUpgrades.length] = Object.keys(upgrades)[randomizer]
 				rarity=(Math.random()*100>=99.99?"Mythical":Math.random()*100>=95?"Rare":Math.random()*100>=70?"Uncommon":"Common")
 			}
-			randomizer=Math.floor(Math.random()*32)
+			randomizer=Math.floor(Math.random()*33)
 			check=true
 		}
 		if(document.getElementById("upgrade"+i)){
