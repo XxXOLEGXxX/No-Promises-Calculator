@@ -80,6 +80,8 @@ function initialize(){
 	positionChange()
 }
 
+initialize()
+
 function stampSelect(x,pick){
 	stamp=x
 	switch(x){
